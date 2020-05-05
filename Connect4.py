@@ -128,28 +128,24 @@ def win_check(num):
     for c in range(4):
         for r in range(6):
             if board[r][c] == num and board[r][c+1] == num and board[r][c+2] == num and board[r][c+3] == num:
-                print("horizontal win")
                 return True
             
     # check vertical locations for win
     for c in range(7):
         for r in range(3):
             if board[r][c] == num and board[r+1][c] == num and board[r+2][c] == num and board[r+3][c] == num:
-                print("vertical win")
                 return True
 
     # Check positively sloped diaganols
     for c in range(4):
         for r in range(3):
             if board[r][c] == num and board[r+1][c+1] == num and board[r+2][c+2] == num and board[r+3][c+3] == num:
-                print("positively sloped diaganols win")
                 return True
 
     # Check negatively sloped diaganols
     for c in range(4):
         for r in range(3):
             if board[r][3-c] == num and board[r+1][3-(c+1)] == num and board[r+2][3-(c+2)] == num and board[r+3][3-(c+3)] == num:
-                print("negatively sloped diaganols win")
                 return True
     
     
@@ -639,9 +635,19 @@ while run:
 
     if win_check(1):
         won = True
+        text = font.render("Red Won, Game Over", True, (255,0,0))
+        text_rect = text.get_rect()
+        text_x = win.get_width() / 2 - text_rect.width / 2
+        text_y = win.get_height() / 2 - text_rect.height / 2
+        win.blit(text, [text_x, text_y])
         
     if win_check(2):
         won = True
+        text = font.render("Yellow Won, Game Over", True, (255,255,0))
+        text_rect = text.get_rect()
+        text_x = win.get_width() / 2 - text_rect.width / 2
+        text_y = win.get_height() / 2 - text_rect.height / 2
+        win.blit(text, [text_x, text_y])
 
 
     #updates screen with new shapes        
